@@ -18,6 +18,18 @@ Where:
 
 Format string similar to 'Energy Now: {{option}}, Temperature: {{option}}'
 
+Limitations:
+------------
+
+ * This has been tested against the EnviR, but may well work with other devices in the range (if you change the baud rate).
+ * Currently this only supports one sensor connected to the device.
+
+Requirements:
+-------------
+ 
+ * Python 2
+ * pySerial
+
 See
 ===
 
