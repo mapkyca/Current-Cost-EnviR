@@ -64,7 +64,7 @@ def main(argv):
 			print 'graph_title Current Cost Energy Usage'
 			print 'graph_vlabel Power Usage in Watts'
 			print 'graph_category Power'
-			print 'temp.label Watts'
+			print 'watts.label Watts'
 			sys.exit()
 		
 	elif command[1] == 'temp':
