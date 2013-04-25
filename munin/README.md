@@ -13,7 +13,7 @@ Usage:
 	ln -s /path/to/plugins/currentcost_ currentcost_temp
  * Set an environment variable for 'path' in your plugins settings pointing to the location of current-cost.py (with trailing slash), e.g.
 
-```echo "[currentcost_]
+```echo "[currentcost*]
 path /path/to/my/plugins/
 " > /etc/munin/plugin-conf.d/currentcost
 ```
