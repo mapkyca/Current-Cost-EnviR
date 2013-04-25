@@ -11,9 +11,10 @@ Usage:
 	cd /etc/munin/plugins
 	ln -s /path/to/plugins/currentcost_ currentcost_watts
 	ln -s /path/to/plugins/currentcost_ currentcost_temp
- * Set an environment variable for 'path' in your plugins settings pointing to the location of current-cost.py (with trailing slash), e.g.
+ * Set an environment variables. You need to set 'env.path' in your settings top point to the location of current-cost.py (with trailing slash), also you need to run the command as a user with read access to the port (usually root) e.g.
 
 ```echo "[currentcost*]
+user root
 env.path /path/to/my/plugins/
 " > /etc/munin/plugin-conf.d/currentcost
 ```
