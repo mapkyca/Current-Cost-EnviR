@@ -14,7 +14,7 @@ Usage:
  * Set an environment variable for 'path' in your plugins settings pointing to the location of current-cost.py (with trailing slash), e.g.
 
 ```echo "[currentcost*]
-path /path/to/my/plugins/
+env.path /path/to/my/plugins/
 " > /etc/munin/plugin-conf.d/currentcost
 ```
  * Restart munin-node
@@ -22,9 +22,9 @@ path /path/to/my/plugins/
 Environment variables:
 ----------------------
 
- * path: Configure the location of the current-cost.py script
- * port: Serial port to connect to (default /dev/ttyUSB0)
- * baud: Baud rate (default 57600)
+ * env.path: Configure the location of the current-cost.py script
+ * env.port: Serial port to connect to (default /dev/ttyUSB0)
+ * env.baud: Baud rate (default 57600)
 
 See
 ---
