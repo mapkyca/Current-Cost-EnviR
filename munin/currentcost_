@@ -41,7 +41,8 @@ import os
 def main(argv):
 	
 	# Path to the current cost script, modify accordingly
-	PATH = '../current-cost.py'
+	PATH = os.getenv('path', '../')
+	PATH = PATH + 'current-cost.py'
 	command = argv[0].split('_')
 	
 	# Set defaults, pulling from environment if necessary
