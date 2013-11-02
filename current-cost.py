@@ -54,10 +54,11 @@ def main():
 	port = '/dev/ttyUSB0'
 	baud = 57600
 	timeout = 10
+	retry = 3
 	format = "Energy Usage at {{time}}: {{watts}} watts, room temperature {{temp}}C"
 
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "t:p:b:o:h", ["help"])
+		opts, args = getopt.getopt(sys.argv[1:], "t:p:b:o:r:h", ["help"])
 	except getopt.GetoptError, err:
 		print str(err)
 		usage()
@@ -75,16 +76,22 @@ def main():
 			sys.exit()
 		elif o == "-o":
 			format = a
+		elif r == '-r':
+			retry = int(a)
 		else:
 			usage()
 			sys.exit()
 			
 			
-			
+	
 	meter = serial.Serial(port, baud, timeout=timeout)
 	meter.open()
 	
 	data = meter.readline()
+	while (not data) and (retry > 0):
+		print "No data, retrying"
+		retry = retry - 1
+		data = meter.readline()
 	
 	meter.close()
 	
