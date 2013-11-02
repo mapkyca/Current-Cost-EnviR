@@ -34,6 +34,7 @@ import getopt
 import sys
 import serial
 import re
+import time
 
 def usage():
 	print("Current-Cost v1.0 By Marcus Povey <marcus@marcus-povey.co.uk>");
@@ -87,20 +88,30 @@ def main():
 	meter = serial.Serial(port, baud, timeout=timeout)
 	meter.open()
 	
-	data = meter.readline()
+	try:
+		data = meter.readline()
+	except:
+		pass
 	while (not data) and (retry > 0):
 		retry = retry - 1
-		data = meter.readline()
+		try:
+			data = meter.readline()
+		except:
+			pass
 	
 	meter.close()
 	
-	watts_ex = re.compile('<watts>([0-9]+)</watts>')
-	temp_ex = re.compile('<tmpr>([0-9\.]+)</tmpr>')
-	time_ex = re.compile('<time>([0-9\.\:]+)</time>')
-	
-	watts = str(int(watts_ex.findall(data)[0])) # cast to and from int to strip leading zeros
-	temp = temp_ex.findall(data)[0]
-	time = time_ex.findall(data)[0]
+	try:
+		watts_ex = re.compile('<watts>([0-9]+)</watts>')
+		temp_ex = re.compile('<tmpr>([0-9\.]+)</tmpr>')
+		time_ex = re.compile('<time>([0-9\.\:]+)</time>')
+		
+		watts = str(int(watts_ex.findall(data)[0])) # cast to and from int to strip leading zeros
+		temp = temp_ex.findall(data)[0]
+		time = time_ex.findall(data)[0]
+	except:
+		sys.stderr.write("Could not get details from device")
+		sys.exit()
 	
 	# Replace format string
 	format = format.replace("{{watts}}", watts)
