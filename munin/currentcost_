@@ -83,7 +83,7 @@ def main(argv):
 			sys.exit()
 
 	os.system('cat /tmp/__currentcost_' + command[1] + ' &&  rm /tmp/__currentcost_' + command[1] )
-	os.system(PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_' + command[1] + ' & ')
+	os.system(PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_' + command[1] + ' 2> /tmp/__currentcost_' + command[1] + '.err & ')
 
 
 if __name__ == "__main__":
