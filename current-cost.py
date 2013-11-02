@@ -89,7 +89,6 @@ def main():
 	
 	data = meter.readline()
 	while (not data) and (retry > 0):
-		print "No data, retrying"
 		retry = retry - 1
 		data = meter.readline()
 	
