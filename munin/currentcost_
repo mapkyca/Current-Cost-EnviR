@@ -82,7 +82,7 @@ def main(argv):
 			print 'temp.label Temperature'
 			sys.exit()
 			
-		os.system('cat /tmp/__currentcost_out | cut -d\'|\' -f1 &&  rm /tmp/__currentcost_out')
+		os.system('cat /tmp/__currentcost_out | cut -d\'|\' -f2 &&  rm /tmp/__currentcost_out')
 
 	os.system(PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_out 2> /tmp/__currentcost_out.err & ')
 
