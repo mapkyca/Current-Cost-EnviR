@@ -51,11 +51,11 @@ def main(argv):
 	baud = os.getenv('baud', 57600)
 	timeout = 30
 	
+	format = '"watts.value {{watts}}|temp.value {{temp}}"'
+	
 	# Which mode?
 	if command[1] == 'watts':
-		
-		format = '"watts.value {{watts}}"'
-		
+			
 		# Is this a config mode?
 		if len(argv) > 1 and argv[1] == 'config':
 			# CONFIG
@@ -66,10 +66,10 @@ def main(argv):
 			print 'graph_category Power'
 			print 'watts.label Watts'
 			sys.exit()
+			
+		os.system('cat /tmp/__currentcost_out | cut -d\'|\' -f1 &&  rm /tmp/__currentcost_out')
 		
 	elif command[1] == 'temp':
-		
-		format = '"temp.value {{temp}}"'
 		
 		# Is this a config mode?
 		if len(argv) > 1 and argv[1] == 'config':
@@ -81,9 +81,10 @@ def main(argv):
 			print 'graph_category Power'
 			print 'temp.label Temperature'
 			sys.exit()
+			
+		os.system('cat /tmp/__currentcost_out | cut -d\'|\' -f1 &&  rm /tmp/__currentcost_out')
 
-	os.system('cat /tmp/__currentcost_' + command[1] + ' &&  rm /tmp/__currentcost_' + command[1] )
-	os.system(PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_' + command[1] + ' 2> /tmp/__currentcost_' + command[1] + '.err & ')
+	os.system(PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_out 2> /tmp/__currentcost_out.err & ')
 
 
 if __name__ == "__main__":
