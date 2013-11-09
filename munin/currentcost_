@@ -85,7 +85,7 @@ def main(argv):
 		os.system('cat /tmp/__currentcost_out | cut -d\'|\' -f2')
 
 	if not os.path.isfile('/tmp/__currentcost.lock'):
-		os.system('touch /tmp/__currentcost.lock && ' + PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_out 2> /tmp/__currentcost_out.err && rm /tmp/__currentcost.lock & ')
+		os.system('touch /tmp/__currentcost.lock && ' + PATH + ' -o ' + format + ' -t ' + str(timeout) + ' -b ' + str(baud) + ' -p ' + port + ' > /tmp/__currentcost_out.tmp 2> /tmp/__currentcost_out.err && mv /tmp/__currentcost_out.tmp /tmp/__currentcost_out && rm /tmp/__currentcost.lock & ')
 	else:
 		os.system('rm /tmp/__currentcost.lock')
 	
